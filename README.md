@@ -57,8 +57,13 @@ Add EFI Disk: ✅
 ```
 4. Disks
 ```bash
-❌ УДАЛИ ДИСК (size = 0)
-(если GUI не даёт — потом удалим)
+4️⃣ Disks
+
+Device: VirtIO Block
+
+Storage: любой
+
+Disk size: 10–20 GB
 ```
 5. CPU
 ```bash
