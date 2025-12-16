@@ -1,178 +1,20 @@
-# Cloud-Init-VM-Proxmox
-Установка Ubuntu Cloud-Init VM в Proxmox
-🧩 Что мы получим в итоге
+<img width="715" height="539" alt="1" src="https://github.com/user-attachments/assets/a677b250-ee50-4c09-a9f5-94f2388d2ea7" />📘 Документация: Cloud-Init в Proxmox из видео (пошагово)
+🧠 Что будет в итоге
 
--Ubuntu Server (cloud image)
+✔️ Готовый Cloud-Init шаблон VM
+✔️ Автоматическая настройка пользователей и сети
+✔️ Быстрое клонирование ВСЕХ ВМ с разными параметрами
 
--Без ISO-установки
+📦 1. Подготовка
+📥 Скачиваем Ubuntu Cloud-image
 
--Автонастройка через Cloud-Init
-
--Доступ по SSH
-
--Шаблон (Template) для клонов / Terraform
-Требования
-
--Proxmox установлен
-
--Доступ в Web UI и Shell
-
--VM ID (пример: 103)
-
--Storage:
-
--local (directory)
-
--local-lvm (LVM)
-2️⃣ Скачиваем Ubuntu Cloud Image (ПРАВИЛЬНО)
-🔹 Открываем Shell Proxmox
-🔹 Скачиваем образ
+Можно через браузер или через Proxmox Shell:
 ```bash
-cd /var/lib/vz
-mkdir -p template/qemu
-cd template/qemu
-
 wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
 ```
-3️⃣ Создаём пустую ВМ (БЕЗ ДИСКОВ)
-В Web UI → Create VM
-1. General
-```bash
-VM ID: 103
+Это готовый образ с поддержкой Cloud-Init.
+🛠 2. Создание VM-заходки под шаблон
 
-Name: ubuntu-cloud
-```
-2. OS
-```bash
-Do not use any media ❗
-```
-3. System
+В интерфейсе Proxmox Create VM:
 
-```bash
-Machine: q35
-
-BIOS: OVMF (UEFI)
-
-Add EFI Disk: ✅
-```
-4. Disks
-```bash
-4️⃣ Disks
-
-Device: VirtIO Block
-
-Storage: любой
-
-Disk size: 10–20 GB
-```
-5. CPU
-```bash
-Cores: 2
-```
-6. Memory
-```bash
-RAM: 4096 MB
-```
-7. Network
-```
-Model: VirtIO
-
-Bridge: vmbr0
-```
-8. Confirm
-```bash
-✔ Finish
-```
-4️⃣ Импортируем Cloud Image в ВМ
-```ash
-qm importdisk 103 /var/lib/vz/template/qemu/jammy-server-cloudimg-amd64.img local-lvm
-```
-
-5️⃣ Подключаем диск как ОС
-```bash
-qm set 103 --scsi0 local-lvm:vm-103-disk-0
-(если имя другое — смотри qm config 103)
-```
-
-6️⃣ Удаляем лишний диск (если есть)
-```bash
-qm set 103 --delete virtio0
-```
-7️⃣ Добавляем Cloud-Init диск
-```bash
-qm set 103 --ide2 local-lvm:cloudinit
-```
-8️⃣ Boot Order
-```bash
-qm set 103 --boot "order=scsi0;ide2;net0"
-```
-Подключаем Cloud-Init образ к ВМ
-```bash
-Зайди в ВМ → Hardware
-
-Удали созданный диск (scsi0)
-
-Нажми Add → Existing Disk
-
-Storage: local
-
-Disk image: выбери скачанный .img
-
-Interface: VirtIO или SCSI
-```
-Добавляем Cloud-Init диск
-```bash
-Add → CloudInit Drive
-
-Storage: любой
-
-Interface: IDE или SCSI
-
-💡 Это диск с настройками, которые Proxmox передаст ВМ.
-```
-Настраиваем Cloud-Init
-```bash
-Зайди:
-VM → Cloud-Init
-
-Заполни:
-
-User: ubuntu
-
-Password: (можно оставить пустым, если SSH)
-
-SSH public key: 🔑 ОЧЕНЬ РЕКОМЕНДУЕТСЯ
-
-IP Config:
-
-DHCP (для начала)
-
-Нажми Regenerate Image
-```
-Включаем правильную загрузку
-
-Зайди:
-```bash
-VM → Options → Boot Order
-
-Поставь:
-
-Cloud-Init disk
-
-Основной диск
-```
- Запуск ВМ
- 
-```bash
-qm start 103
-```
- (РЕКОМЕНДУЕТСЯ) QEMU Guest Agent
-```bash
-sudo apt update
-sudo apt install qemu-guest-agent -y
-sudo systemctl enable --now qemu-guest-agent
-```
-В Proxmox:
-```bash
-VM → Options → QEMU Guest Agent → Enabled
-```
+📌 Basic settings:
