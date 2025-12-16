@@ -24,5 +24,7 @@ wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.i
 <img width="620" height="462" alt="4" src="https://github.com/user-attachments/assets/30686c6c-b46b-4368-85d1-13e2b0198cf7" />
 <img width="622" height="459" alt="5" src="https://github.com/user-attachments/assets/40cf105c-04ed-4d68-9967-696847b4e8d3" />
 <img width="622" height="464" alt="6" src="https://github.com/user-attachments/assets/f4dbf619-1261-4436-8059-9e907261f72b" />
+<img width="722" height="539" alt="{C3EE4AEB-6DC4-4AF5-8315-38A7758D3D30}" src="https://github.com/user-attachments/assets/5a9be131-8f9f-40d1-a406-0fcf86fa3201" />
+<img width="711" height="523" alt="{E3AD41BE-96A1-48F4-9F3B-454749F707B6}" src="https://github.com/user-attachments/assets/0bae7fee-a42a-418e-88bd-1671391a8220" />
 <img width="622" height="462" alt="7" src="https://github.com/user-attachments/assets/f53c2d63-7ff6-4bf4-9bb0-a0e87e5bf44c" />
 
