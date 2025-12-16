@@ -99,7 +99,7 @@ qm set 103 --ide2 local-lvm:cloudinit
 ```
 8️⃣ Boot Order
 ```bash
-qm set 103 --boot order=scsi0;ide2;net0
+qm set 103 --boot "order=scsi0;ide2;net0"
 ```
 9️⃣ Настройка Cloud-Init (GUI)
 
