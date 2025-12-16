@@ -19,6 +19,7 @@ wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.i
 
 📌 Basic settings:
 <img width="715" height="539" alt="1" src="https://github.com/user-attachments/assets/a677b250-ee50-4c09-a9f5-94f2388d2ea7" />
+<img width="715" height="533" alt="{574A9B68-CF0C-44EC-9F47-827CB0F8D0B6}" src="https://github.com/user-attachments/assets/c5c7a2d6-31d7-4fae-b8c2-458754a7a25f" />
 <img width="714" height="533" alt="2" src="https://github.com/user-attachments/assets/eaaa71cb-312e-4606-ab56-43c0b1e55236" />
 <img width="717" height="533" alt="3" src="https://github.com/user-attachments/assets/0516cb37-1841-4ae9-9bca-24e0673d9fab" />
 <img width="620" height="462" alt="4" src="https://github.com/user-attachments/assets/30686c6c-b46b-4368-85d1-13e2b0198cf7" />
