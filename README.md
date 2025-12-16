@@ -106,26 +106,67 @@ qm set 103 --ide2 local-lvm:cloudinit
 ```bash
 qm set 103 --boot "order=scsi0;ide2;net0"
 ```
-9️⃣ Настройка Cloud-Init (GUI)
+Подключаем Cloud-Init образ к ВМ
+```bash
+Зайди в ВМ → Hardware
 
+Удали созданный диск (scsi0)
+
+Нажми Add → Existing Disk
+
+Storage: local
+
+Disk image: выбери скачанный .img
+
+Interface: VirtIO или SCSI
+```
+Добавляем Cloud-Init диск
+```bash
+Add → CloudInit Drive
+
+Storage: любой
+
+Interface: IDE или SCSI
+
+💡 Это диск с настройками, которые Proxmox передаст ВМ.
+```
+Настраиваем Cloud-Init
+```bash
+Зайди:
 VM → Cloud-Init
 
 Заполни:
 
--User: ubuntu
+User: ubuntu
 
--Password: ❌ (лучше без)
+Password: (можно оставить пустым, если SSH)
 
--SSH public key: ✅
+SSH public key: 🔑 ОЧЕНЬ РЕКОМЕНДУЕТСЯ
 
--IP Config: DHCP
+IP Config:
 
--👉 Regenerate Image
-🔟 Запуск ВМ
+DHCP (для начала)
+
+Нажми Regenerate Image
+```
+Включаем правильную загрузку
+
+Зайди:
+```bash
+VM → Options → Boot Order
+
+Поставь:
+
+Cloud-Init disk
+
+Основной диск
+```
+ Запуск ВМ
+ 
 ```bash
 qm start 103
 ```
-1️⃣1️⃣ (РЕКОМЕНДУЕТСЯ) QEMU Guest Agent
+ (РЕКОМЕНДУЕТСЯ) QEMU Guest Agent
 ```bash
 sudo apt update
 sudo apt install qemu-guest-agent -y
