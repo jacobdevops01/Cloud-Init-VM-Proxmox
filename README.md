@@ -44,7 +44,7 @@ qm set 999 --ide2 local-lvm:cloudinit
 ```
 И настраиваем порядок загрузки:
 ```bash
-qm set 9000 --boot c --bootdisk scsi0
+qm set 999 --boot c --bootdisk scsi0
 ```
 Добавляем консоль:
 ```bash
