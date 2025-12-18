@@ -48,7 +48,7 @@ qm set 999 --boot c --bootdisk scsi0
 ```
 Добавляем консоль:
 ```bash
-qm set 9000 --serial0 socket --vga serial0
+qm set 999 --serial0 socket --vga serial0
 Это чтобы было удобно смотреть вывод.
 ```
 
